@@ -19,7 +19,5 @@ public class ForfeitService {
     public List<Forfeit> getAll() {
         return forfeitRepository.findAll();
     }
-    public List<BookRating> getTopBooks(){
-        return borrowingBooksDetailRepository.getTopBooks();
-    }
+
 }

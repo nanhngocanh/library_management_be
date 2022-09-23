@@ -2,10 +2,7 @@ package com.hedspi.library.controller;
 
 import com.hedspi.library.request.BookSearchRequest;
 import com.hedspi.library.request.PageSize;
-import com.hedspi.library.response.BookDetail;
-import com.hedspi.library.response.BookSearch;
-import com.hedspi.library.response.BorrowingDetailByBook;
-import com.hedspi.library.response.SuppliedBook;
+import com.hedspi.library.response.*;
 import com.hedspi.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class BookController {
@@ -71,5 +69,15 @@ public class BookController {
     public Page<SuppliedBook> getSupplierBookBySupplier(@PathVariable String id, @RequestBody PageSize pageSize){
         Pageable pageable = PageRequest.of(pageSize.getPage(),pageSize.getSize());
         return bookService.getSuppliedBookBySupplier(id,pageable);
+    }
+
+    @GetMapping(value = "/v1/top5Books")
+    public  List<BookRating> getTop5Books(){
+        return bookService.getTopBooks();
+    }
+
+    @GetMapping("/v1/dashboard/numbers")
+    public DashboardResponse getNumbers(){
+        return bookService.getNumbers();
     }
 }

@@ -17,4 +17,5 @@ public interface ReaderRepository extends JpaRepository<Reader, Integer> {
 
     @Query("select distinct new com.hedspi.library.response.ReaderSearch(r.id,r.name,r.phoneNumber,r.email,r.type,rs.status) from BorrowingBooksManage bbm join bbm.reader r, Forfeit f, ReaderStatus rs where bbm.id = f.borrowingBooksId and r.id = rs.id and r.id = :id and (r.name like %:keyword% or r.phoneNumber like %:keyword% or r.email like %:keyword%)")
     Page<ReaderSearch> searchReaders(Integer id, String keyword, Pageable pageable);
+
 }

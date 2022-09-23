@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface BorrowingBooksDetailRepository extends JpaRepository<BorrowingBooksDetail, Integer> {
-    @Query(value = "SELECT distinct new com.hedspi.library.response.BookRating(bookId, COUNT(bookId)) FROM BorrowingBooksDetail GROUP BY bookId " +
-            "ORDER BY COUNT(bookId) desc ")
+    @Query(value = "SELECT distinct new com.hedspi.library.response.BookRating(bbd.bookId,bbd.book.name, COUNT(bbd.bookId)) FROM BorrowingBooksDetail bbd GROUP BY bbd.bookId ORDER BY COUNT(bbd.bookId) desc ")
     List<BookRating> getTopBooks();
 }

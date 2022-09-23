@@ -20,8 +20,4 @@ public class ForfeitController {
         return forfeitService.getAll();
     }
 
-    @GetMapping(value = "topBooks")
-    public  List<BookRating> getTopBooks(){
-        return forfeitService.getTopBooks();
-    }
 }
